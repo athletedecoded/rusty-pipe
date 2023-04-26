@@ -1,5 +1,8 @@
-backbone:
-	wget https://github.com/LaurentMazare/tch-rs/releases/download/mw/resnet18.ot
+convert:
+	python3 -m venv ~/.venv
+	source ~/.venv/bin/activate
+	pip install --upgrade pip &&\
+		pip install -r requirements.txt
 
 dataset:
 	wget https://download.pytorch.org/tutorial/hymenoptera_data.zip &&\

@@ -4,17 +4,20 @@
 
 E2E ML Pipe -- from data to distroless deploy
 
-![image](./assets/hf-micro.png)
+<!-- ![image](./assets/hf-micro.png) -->
 
-## What I Learnt
-
-* Use a resnet18 backbone pretrained on imagenet
 
 ## Setup
 
 **Install**
 ```
 $ make install
+```
+
+**Convert .pt to .ot**
+```
+$ python3 -m venv ~/.venv
+$ source ~/.venv/bin/activate
 ```
 
 
