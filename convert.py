@@ -1,5 +1,4 @@
 import torch
-import torch.onnx as onnx
 from torch.utils.mobile_optimizer import optimize_for_mobile
 
 print("Loading model.pt...")
@@ -17,4 +16,4 @@ optimized_model.save("model.ot")
 dummy_input = torch.randn(1, 3, 224, 224)
 
 # Export the model to ONNX format
-onnx.export(model, dummy_input, "model.onnx")
+torch.onnx.export(scripted_model, dummy_input, "model.onnx")

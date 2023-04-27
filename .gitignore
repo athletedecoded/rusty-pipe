@@ -1,6 +1,9 @@
 /target
 
 hymenoptera_data
+
+# Model files
 *.ot
+*.onnx
 *.pt
 *.pth
