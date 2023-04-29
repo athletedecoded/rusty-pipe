@@ -1,3 +1,6 @@
+docker:
+	docker build -t rusty-pipe .
+
 format:
 	cargo fmt --quiet
 

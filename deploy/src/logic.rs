@@ -137,24 +137,9 @@ pub async fn predict_image(image_path: String) -> Result<Prediction, Box<dyn std
         println!("{:50} {:5.2}%", class, 100.0 * probability)
     }
     
-    // let resnet34 = tch::vision::resnet::resnet18(&vs.root(), imagenet::CLASS_COUNT);
-    // let weight_pth = "resnet34.ot";
-    // vs.load(&weight_pth).unwrap();
-    // log::info!("func: predict_image:  applying forward pass of the model to get the logits and convert them to probabilities via a softmax");
-    // let output = resnet34
-    //     .forward_t(&image.unsqueeze(0), /*train=*/ false)
-    //     .softmax(-1, Kind::Float);
-    // // Dump output to console
-    // println!("output: {:?}", output);
-
-    // for (probability, class) in imagenet::top(&output, 5).iter() {
-    //     println!("{:50} {:5.2}%", class, 100.0 * probability)
-    // }
-
-
     log::info!(
         "func: predict_image: : prediction results: {:?}",
-        imagenet::top(&output, 5)
+        top_preds(&output, 2)
     );
 
     let top_result = top_preds(&output, 1);

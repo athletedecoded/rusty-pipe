@@ -1,10 +1,10 @@
-<!-- ![CI/CD Pipeline](https://github.com/athletedecoded/hf-micro/actions/workflows/az_deploy.yml/badge.svg) -->
+![CI/CD Pipeline](https://github.com/athletedecoded/rusty-pipe/actions/workflows/az_deploy.yml/badge.svg)
 
-# IDS721 Spring 2023 Final Project - Rusty Pipe
+# Rusty Pipe [WiP]
 
 E2E ML Pipeline -- from data to distroless deploy
 
-<!-- ![image](./assets/hf-micro.png) -->
+![image](./assets/rusty-pipe.png)
 
 
 ## Train
@@ -18,18 +18,19 @@ $ make dataset
 
 **Train model**
 
-TODO: Add model CLI param
 ```
-$ cargo run --m <model> --d <data_dir>
+$ cargo run hymenoptera_data
 ```
 
-**Convert model to Onnx for Deploy**
+**Convert model to .ot for Deploy**
 
 ```
 $ python3 -m venv ~/.venv
 $ source ~/.venv/bin/activate
 $ pip install -r requirements.txt
 $ make models
+$ cd ../deploy
+$ zip -r model.zip model.ot
 ```
 
 ## Deploy
@@ -59,7 +60,7 @@ git checkout -b deploy-distro
 git push origin deploy-distro
 ``` 
 
-* Ensure Repo > Settings > Actions > General > Allow all actions
+*Gotcha: Ensure Repo > Settings > Actions > General > Allow all actions*
 
 
 ## Useage & Endpoints
@@ -79,11 +80,13 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "image=@deploy/ant.jpg" h
 
 **Train**
 - [ ] Dataset: create tch dataloader that takes train_val split with class subdirectories
-- [ ] Models: improve CNN, add VGG, pass model as CLI param
-- [ ] Write labels to labels.txt --> cp to deploy
+- [ ] Models: improve CNN, fix VGG, pass model as CLI param
+- [ ] Dynamic class generation --> txt file
 
 **Deploy**
+- [ ] Fix GHA deploy -- look into GHLFS for model.zip
 - [ ] Switch from ot to onnx rt
+- [ ] Load testing
 
 
 

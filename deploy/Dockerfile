@@ -1,21 +1,25 @@
 FROM rust:latest as builder
 
 WORKDIR /usr/src/app
-COPY deploy/. .
+COPY /deploy/. .
 
 # Install Libtorch (PyTorch C++ backend) v2.0.0
-RUN wget https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.0.0%2Bcpu.zip && \
+RUN curl -LO https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.0.0%2Bcpu.zip && \
     mv libtorch-cxx11-abi-shared-with-deps-2.0.0%2Bcpu.zip libtorch-cxx11-abi-shared-with-deps-2.0.0+cpu.zip && \
     unzip libtorch-cxx11-abi-shared-with-deps-2.0.0+cpu.zip && \
     rm libtorch-cxx11-abi-shared-with-deps-2.0.0+cpu.zip
+
+# Get model weights
+# RUN wget model.zip && \
+#     unzip model.zip && \
+#     rm model.zip
 
 RUN cargo build --release
 
 FROM gcr.io/distroless/cc-debian11
 COPY --from=builder /usr/src/app/target/release/deploy /usr/local/bin/deploy
 COPY --from=builder /usr/src/app/libtorch /usr/local/libtorch
-COPY --from=builder /app/model.ot /model.ot
-COPY --from=builder /app/model.onnx /model.onnx
+COPY --from=builder /usr/src/app/model.ot /usr/local/model.ot
 
 # Set LIBTORCH environment variable
 ENV LD_LIBRARY_PATH /usr/local/libtorch/lib/
