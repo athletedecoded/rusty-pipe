@@ -48,7 +48,7 @@ pub fn run(dataset_dir: String) -> Result<()> {
 
     // Load the dataset and resize it to the usual imagenet dimension of 224x224.
     let dataset = imagenet::load_from_dir(dataset_dir)?;
-    println!("{dataset:?}");
+    println!("{:?}", dataset.train_labels);
 
     let mut vs = nn::VarStore::new(Device::cuda_if_available());
     let net = Net::new(&vs.root());

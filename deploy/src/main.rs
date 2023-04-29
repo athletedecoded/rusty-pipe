@@ -3,6 +3,7 @@ use actix_web::{App, HttpServer};
 use log::LevelFilter;
 
 mod routes;
+mod logic;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -14,7 +15,7 @@ async fn main() -> std::io::Result<()> {
         App::new()
             .wrap(Logger::default())
             .service(routes::index)
-            // .service(routes::predict)
+            .service(routes::predict)
     })
     .bind("0.0.0.0:8080")?
     .run()
