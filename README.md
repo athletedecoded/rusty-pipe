@@ -58,19 +58,23 @@ git checkout -b deploy-distro
 git push origin deploy-distro
 ``` 
 
-*Gotcha: Ensure Repo > Settings > Actions > General > Allow all actions*
+*Gotchas:*
+* Rusty-Pipe Repo > Settings > Actions > General > Actions Permissions > Allow all actions
+* Rusty-Pipe Repo > Settings > Actions > General > Workflow Permissions > Read & Write
 
 
 ## Useage & Endpoints
 
-Supported endpoints to base URL https://localhost:8080
+Local base URL https://localhost:8080
+
+Example deployed URL https://rusty-pipe.livelyisland-7ce892fe.eastus.azurecontainerapps.io/
 
 **GET /** -- Homepage
 
 **POST /predict** -- Predict Image
 
 ```
-curl -X POST -H "Content-Type: multipart/form-data" -F "image=@deploy/ant.jpg" http://127.0.0.1:8080/predict
+curl -X POST -H "Content-Type: multipart/form-data" -F "image=@assets/ant.jpg" <base_url>/predict
 ```
 
 
