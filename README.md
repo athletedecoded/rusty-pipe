@@ -22,15 +22,13 @@ $ make dataset
 $ cargo run hymenoptera_data
 ```
 
-**Convert model to .ot for Deploy**
+**Convert model for Deploy**
 
 ```
 $ python3 -m venv ~/.venv
 $ source ~/.venv/bin/activate
 $ pip install -r requirements.txt
 $ make models
-$ cd ../deploy
-$ zip -r model.zip model.ot
 ```
 
 ## Deploy
@@ -81,10 +79,10 @@ curl -X POST -H "Content-Type: multipart/form-data" -F "image=@deploy/ant.jpg" h
 **Train**
 - [ ] Dataset: create tch dataloader that takes train_val split with class subdirectories
 - [ ] Models: improve CNN, fix VGG, pass model as CLI param
-- [ ] Dynamic class generation --> txt file
+- [ ] Dynamic class generation --> txt file --> deploy
 
 **Deploy**
-- [ ] Fix GHA deploy -- look into GHLFS for model.zip
+- [ ] Fix GHA deploy -- upload models to Azure Blob via SDK
 - [ ] Switch from ot to onnx rt
 - [ ] Load testing
 

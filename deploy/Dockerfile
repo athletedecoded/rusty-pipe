@@ -1,7 +1,7 @@
 FROM rust:latest as builder
 
 WORKDIR /usr/src/app
-COPY /deploy/. .
+COPY deploy/. .
 
 # Install Libtorch (PyTorch C++ backend) v2.0.0
 RUN curl -LO https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared-with-deps-2.0.0%2Bcpu.zip && \
@@ -10,9 +10,9 @@ RUN curl -LO https://download.pytorch.org/libtorch/cpu/libtorch-cxx11-abi-shared
     rm libtorch-cxx11-abi-shared-with-deps-2.0.0+cpu.zip
 
 # Get model weights
-# RUN wget model.zip && \
-#     unzip model.zip && \
-#     rm model.zip
+RUN wget https://rustypipe.blob.core.windows.net/models/model.zip && \
+    unzip model.zip && \
+    rm model.zip
 
 RUN cargo build --release
 

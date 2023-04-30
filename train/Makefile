@@ -1,6 +1,6 @@
 models:
 	python3 convert.py
-	cp model.onnx model.ot ../deploy
+	zip -r model.zip model.ot
 
 dataset:
 	wget https://download.pytorch.org/tutorial/hymenoptera_data.zip &&\

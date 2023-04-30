@@ -1,5 +1,8 @@
-docker:
-	docker build -t rusty-pipe .
+# image:
+# 	docker build -t rusty-pipe .
+
+# docker:
+# 	docker run -p 8080:8080 rusty-pipe
 
 format:
 	cargo fmt --quiet
