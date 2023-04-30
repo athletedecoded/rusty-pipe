@@ -19,7 +19,7 @@ RUN cargo build --release
 FROM gcr.io/distroless/cc-debian11
 COPY --from=builder /usr/src/app/target/release/deploy /usr/local/bin/deploy
 COPY --from=builder /usr/src/app/libtorch /usr/local/libtorch
-COPY --from=builder /usr/src/app/model.ot /usr/local/model.ot
+COPY --from=builder /usr/src/app/model.ot /model.ot
 
 # Set LIBTORCH environment variable
 ENV LD_LIBRARY_PATH /usr/local/libtorch/lib/

@@ -1,7 +1,7 @@
 name: Trigger auto deployment for demo-container
 
 env:
-  AZURE_CONTAINER_APP_NAME: onnx-distro
+  AZURE_CONTAINER_APP_NAME: rusty-pipe
   AZURE_GROUP_NAME: rust-azure-athletedecoded
 
 on:
